@@ -1,0 +1,645 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000000000000000000001001 /* RhythmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B0 /* RhythmApp.swift */; };
+		000000000000000000001002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B1 /* AppDelegate.swift */; };
+		000000000000000000001003 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B2 /* AppController.swift */; };
+		000000000000000000001004 /* KeyboardShortcutsNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B3 /* KeyboardShortcutsNames.swift */; };
+		000000000000000000001005 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B4 /* ScheduleEngine.swift */; };
+		000000000000000000001006 /* TimerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B5 /* TimerEngine.swift */; };
+		000000000000000000001007 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B6 /* NotificationService.swift */; };
+		000000000000000000001008 /* ClockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B7 /* ClockObserver.swift */; };
+		000000000000000000001009 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B8 /* LaunchAtLogin.swift */; };
+		00000000000000000000100B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000BA /* SettingsView.swift */; };
+		00000000000000000000100C /* ShortcutRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000BB /* ShortcutRecorderView.swift */; };
+		00000000000000000000100D /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000C0 /* SharedModels.swift */; };
+		00000000000000000000100E /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000C1 /* SharedStore.swift */; };
+		00000000000000000000100F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000BC /* Assets.xcassets */; };
+		000000000000000000001010 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000000008002 /* KeyboardShortcuts */; };
+		000000000000000000001011 /* RhythmWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000A2 /* RhythmWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		000000000000000000001012 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000BF /* StatusBarController.swift */; };
+		000000000000000000001013 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000C2 /* SettingsWindowController.swift */; };
+		000000000000000000001020 /* RhythmWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000D0 /* RhythmWidgetBundle.swift */; };
+		000000000000000000001021 /* RhythmWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000D1 /* RhythmWidget.swift */; };
+		000000000000000000001022 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000D2 /* Provider.swift */; };
+		000000000000000000001023 /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000C0 /* SharedModels.swift */; };
+		000000000000000000001024 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000C1 /* SharedStore.swift */; };
+		000000000000000000001030 /* ScheduleEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000E0 /* ScheduleEngineTests.swift */; };
+		000000000000000000001031 /* TimerEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000E1 /* TimerEngineTests.swift */; };
+		000000000000000000001032 /* ScheduleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B4 /* ScheduleEngine.swift */; };
+		000000000000000000001033 /* TimerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000B5 /* TimerEngine.swift */; };
+		000000000000000000001034 /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000C0 /* SharedModels.swift */; };
+		000000000000000000001035 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000000C1 /* SharedStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		000000000000000000005002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000003002;
+			remoteInfo = RhythmWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		000000000000000000004004 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				000000000000000000001011 /* RhythmWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0000000000000000000000A1 /* Rhythm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhythm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0000000000000000000000A2 /* RhythmWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RhythmWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0000000000000000000000A3 /* RhythmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhythmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0000000000000000000000B0 /* RhythmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhythmApp.swift; sourceTree = "<group>"; };
+		0000000000000000000000B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0000000000000000000000B2 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		0000000000000000000000B3 /* KeyboardShortcutsNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutsNames.swift; sourceTree = "<group>"; };
+		0000000000000000000000B4 /* ScheduleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEngine.swift; sourceTree = "<group>"; };
+		0000000000000000000000B5 /* TimerEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEngine.swift; sourceTree = "<group>"; };
+		0000000000000000000000B6 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		0000000000000000000000B7 /* ClockObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockObserver.swift; sourceTree = "<group>"; };
+		0000000000000000000000B8 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
+		0000000000000000000000BA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0000000000000000000000BB /* ShortcutRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderView.swift; sourceTree = "<group>"; };
+		0000000000000000000000BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0000000000000000000000BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0000000000000000000000BE /* Rhythm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rhythm.entitlements; sourceTree = "<group>"; };
+		0000000000000000000000BF /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		0000000000000000000000C2 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
+		0000000000000000000000C0 /* SharedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModels.swift; sourceTree = "<group>"; };
+		0000000000000000000000C1 /* SharedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStore.swift; sourceTree = "<group>"; };
+		0000000000000000000000D0 /* RhythmWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhythmWidgetBundle.swift; sourceTree = "<group>"; };
+		0000000000000000000000D1 /* RhythmWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhythmWidget.swift; sourceTree = "<group>"; };
+		0000000000000000000000D2 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		0000000000000000000000D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0000000000000000000000D4 /* RhythmWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhythmWidget.entitlements; sourceTree = "<group>"; };
+		0000000000000000000000E0 /* ScheduleEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEngineTests.swift; sourceTree = "<group>"; };
+		0000000000000000000000E1 /* TimerEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEngineTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		000000000000000000004002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000001010 /* KeyboardShortcuts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000004006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000004009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000000000000000000002001 = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000002002 /* Rhythm */,
+				000000000000000000002006 /* RhythmWidget */,
+				000000000000000000002007 /* Shared */,
+				000000000000000000002008 /* RhythmTests */,
+				00000000000000000000200A /* Packages */,
+				000000000000000000002009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		000000000000000000002002 /* Rhythm */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000000B0 /* RhythmApp.swift */,
+				0000000000000000000000B1 /* AppDelegate.swift */,
+				0000000000000000000000B2 /* AppController.swift */,
+				0000000000000000000000B3 /* KeyboardShortcutsNames.swift */,
+				000000000000000000002003 /* Engine */,
+				000000000000000000002004 /* UI */,
+				000000000000000000002005 /* Services */,
+				0000000000000000000000BC /* Assets.xcassets */,
+				0000000000000000000000BD /* Info.plist */,
+				0000000000000000000000BE /* Rhythm.entitlements */,
+			);
+			path = Rhythm;
+			sourceTree = "<group>";
+		};
+		000000000000000000002003 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000000B4 /* ScheduleEngine.swift */,
+				0000000000000000000000B5 /* TimerEngine.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		000000000000000000002004 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000000BA /* SettingsView.swift */,
+				0000000000000000000000BB /* ShortcutRecorderView.swift */,
+				0000000000000000000000BF /* StatusBarController.swift */,
+				0000000000000000000000C2 /* SettingsWindowController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		000000000000000000002005 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000000B6 /* NotificationService.swift */,
+				0000000000000000000000B7 /* ClockObserver.swift */,
+				0000000000000000000000B8 /* LaunchAtLogin.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		000000000000000000002006 /* RhythmWidget */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000000D0 /* RhythmWidgetBundle.swift */,
+				0000000000000000000000D1 /* RhythmWidget.swift */,
+				0000000000000000000000D2 /* Provider.swift */,
+				0000000000000000000000D3 /* Info.plist */,
+				0000000000000000000000D4 /* RhythmWidget.entitlements */,
+			);
+			path = RhythmWidget;
+			sourceTree = "<group>";
+		};
+		000000000000000000002007 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000000C0 /* SharedModels.swift */,
+				0000000000000000000000C1 /* SharedStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		000000000000000000002008 /* RhythmTests */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000000E0 /* ScheduleEngineTests.swift */,
+				0000000000000000000000E1 /* TimerEngineTests.swift */,
+			);
+			path = RhythmTests;
+			sourceTree = "<group>";
+		};
+		000000000000000000002009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000000A1 /* Rhythm.app */,
+				0000000000000000000000A2 /* RhythmWidget.appex */,
+				0000000000000000000000A3 /* RhythmTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00000000000000000000200A /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		000000000000000000003001 /* Rhythm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000006002 /* Build configuration list for PBXNativeTarget "Rhythm" */;
+			buildPhases = (
+				000000000000000000004001 /* Sources */,
+				000000000000000000004002 /* Frameworks */,
+				000000000000000000004003 /* Resources */,
+				000000000000000000004004 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				000000000000000000005001 /* PBXTargetDependency */,
+			);
+			name = Rhythm;
+			packageProductDependencies = (
+				000000000000000000008002 /* KeyboardShortcuts */,
+			);
+			productName = Rhythm;
+			productReference = 0000000000000000000000A1 /* Rhythm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		000000000000000000003002 /* RhythmWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000006003 /* Build configuration list for PBXNativeTarget "RhythmWidget" */;
+			buildPhases = (
+				000000000000000000004005 /* Sources */,
+				000000000000000000004006 /* Frameworks */,
+				000000000000000000004007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RhythmWidget;
+			productName = RhythmWidget;
+			productReference = 0000000000000000000000A2 /* RhythmWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		000000000000000000003003 /* RhythmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000006004 /* Build configuration list for PBXNativeTarget "RhythmTests" */;
+			buildPhases = (
+				000000000000000000004008 /* Sources */,
+				000000000000000000004009 /* Frameworks */,
+				00000000000000000000400A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RhythmTests;
+			productName = RhythmTests;
+			productReference = 0000000000000000000000A3 /* RhythmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		000000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					000000000000000000003001 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					000000000000000000003002 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					000000000000000000003003 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = 000000000000000000006001 /* Build configuration list for PBXProject "Rhythm" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 000000000000000000002001;
+			packageReferences = (
+				000000000000000000008001 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
+			productRefGroup = 000000000000000000002009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				000000000000000000003001 /* Rhythm */,
+				000000000000000000003002 /* RhythmWidget */,
+				000000000000000000003003 /* RhythmTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		000000000000000000004003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00000000000000000000100F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000004007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00000000000000000000400A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		000000000000000000004001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000001001 /* RhythmApp.swift in Sources */,
+				000000000000000000001002 /* AppDelegate.swift in Sources */,
+				000000000000000000001003 /* AppController.swift in Sources */,
+				000000000000000000001004 /* KeyboardShortcutsNames.swift in Sources */,
+				000000000000000000001005 /* ScheduleEngine.swift in Sources */,
+				000000000000000000001006 /* TimerEngine.swift in Sources */,
+				000000000000000000001007 /* NotificationService.swift in Sources */,
+				000000000000000000001008 /* ClockObserver.swift in Sources */,
+				000000000000000000001009 /* LaunchAtLogin.swift in Sources */,
+				00000000000000000000100B /* SettingsView.swift in Sources */,
+				00000000000000000000100C /* ShortcutRecorderView.swift in Sources */,
+				000000000000000000001012 /* StatusBarController.swift in Sources */,
+				000000000000000000001013 /* SettingsWindowController.swift in Sources */,
+				00000000000000000000100D /* SharedModels.swift in Sources */,
+				00000000000000000000100E /* SharedStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000004005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000001020 /* RhythmWidgetBundle.swift in Sources */,
+				000000000000000000001021 /* RhythmWidget.swift in Sources */,
+				000000000000000000001022 /* Provider.swift in Sources */,
+				000000000000000000001023 /* SharedModels.swift in Sources */,
+				000000000000000000001024 /* SharedStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000004008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000001030 /* ScheduleEngineTests.swift in Sources */,
+				000000000000000000001031 /* TimerEngineTests.swift in Sources */,
+				000000000000000000001032 /* ScheduleEngine.swift in Sources */,
+				000000000000000000001033 /* TimerEngine.swift in Sources */,
+				000000000000000000001034 /* SharedModels.swift in Sources */,
+				000000000000000000001035 /* SharedStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		000000000000000000005001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000003002 /* RhythmWidget */;
+			targetProxy = 000000000000000000005002 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		000000000000000000007001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		000000000000000000007002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		000000000000000000007003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Rhythm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhythm.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		000000000000000000007004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Rhythm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhythm.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		000000000000000000007005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RhythmWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhythm.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		000000000000000000007006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RhythmWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhythm.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		000000000000000000007007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhythm.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "";
+			};
+			name = Debug;
+		};
+		000000000000000000007008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhythm.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		000000000000000000006001 /* Build configuration list for PBXProject "Rhythm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000007001 /* Debug */,
+				000000000000000000007002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000006002 /* Build configuration list for PBXNativeTarget "Rhythm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000007003 /* Debug */,
+				000000000000000000007004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000006003 /* Build configuration list for PBXNativeTarget "RhythmWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000007005 /* Debug */,
+				000000000000000000007006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000006004 /* Build configuration list for PBXNativeTarget "RhythmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000007007 /* Debug */,
+				000000000000000000007008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		000000000000000000008001 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		000000000000000000008002 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 000000000000000000008001 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 000000000000000000000001 /* Project object */;
+}
