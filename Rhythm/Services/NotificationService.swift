@@ -26,6 +26,8 @@ final class NotificationService: NSObject, UNUserNotificationCenterDelegate {
         if settings.soundEnabled {
             content.sound = .default
         }
+        // 固定 identifier：同类通知在通知中心「替换」而非「累积」，避免长时运行堆积。
+        let identifier: String
         switch event {
         case let .phaseChanged(_, to):
             switch to {
@@ -38,13 +40,15 @@ final class NotificationService: NSObject, UNUserNotificationCenterDelegate {
             case .idle:
                 return
             }
+            identifier = "rhythm.phase"
         case .windowEnded:
             content.title = "时段已结束"
             content.body = "当前生效时段结束，计时已停止。"
+            identifier = "rhythm.window"
         }
 
         let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
+            identifier: identifier,
             content: content,
             trigger: nil
         )

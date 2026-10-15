@@ -82,6 +82,15 @@ struct SettingsView: View {
                 Toggle("播放提示音", isOn: $controller.settings.soundEnabled)
             }
 
+            Section("熄屏") {
+                Toggle("熄屏时暂停计时", isOn: $controller.settings.pauseOnScreenSleep)
+                Picker("恢复时机", selection: $controller.settings.screenSleepResume) {
+                    Text("点亮").tag(ScreenSleepResumeTrigger.screenWake)
+                    Text("解锁后").tag(ScreenSleepResumeTrigger.unlock)
+                }
+                .disabled(!controller.settings.pauseOnScreenSleep)
+            }
+
             Section("快捷键") {
                 ShortcutRecorderView()
             }

@@ -12,9 +12,10 @@ struct RhythmApp: App {
 
     var body: some Scene {
         // 菜单栏与设置窗口均由 AppKit 管理（见 AppDelegate / StatusBarController）。
-        // 这里保留一个 Settings 场景以满足 App 需要至少一个 Scene 的要求。
+        // 这里仅保留一个 Settings 场景以满足 App 需要至少一个 Scene 的要求；
+        // 内容不再观察 `AppController`，避免常驻场景参与每次全局状态重算。
         Settings {
-            SettingsView(controller: AppController.shared)
+            EmptyView()
         }
     }
 }

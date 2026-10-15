@@ -95,6 +95,14 @@ public struct TimeRange: Codable, Identifiable, Hashable, Sendable {
     }
 }
 
+/// 熄屏自动暂停后的恢复触发时机。
+public enum ScreenSleepResumeTrigger: String, Codable, Sendable {
+    /// 屏幕点亮 / 系统唤醒即恢复。
+    case screenWake
+    /// 亮屏后若仍处于锁屏，待解锁（或检测到未锁屏）再恢复。
+    case unlock
+}
+
 /// 用户可配置设置，存入 App Group UserDefaults。
 public struct AppSettings: Codable, Equatable, Sendable {
     /// 工作时长（分钟）。
@@ -113,6 +121,10 @@ public struct AppSettings: Codable, Equatable, Sendable {
     public var soundEnabled: Bool
     /// 开机自启（SMAppService）。
     public var launchAtLogin: Bool
+    /// 熄屏 / 系统睡眠时自动暂停计时（显式开启，默认关闭）。
+    public var pauseOnScreenSleep: Bool
+    /// 熄屏自动暂停后的恢复触发时机。
+    public var screenSleepResume: ScreenSleepResumeTrigger
 
     public init(
         workMinutes: Int = 40,
@@ -122,7 +134,9 @@ public struct AppSettings: Codable, Equatable, Sendable {
         notifyOnPhaseEnd: Bool = true,
         notifyOnWindowEnd: Bool = false,
         soundEnabled: Bool = true,
-        launchAtLogin: Bool = false
+        launchAtLogin: Bool = false,
+        pauseOnScreenSleep: Bool = false,
+        screenSleepResume: ScreenSleepResumeTrigger = .screenWake
     ) {
         self.workMinutes = workMinutes
         self.restMinutes = restMinutes
@@ -132,6 +146,31 @@ public struct AppSettings: Codable, Equatable, Sendable {
         self.notifyOnWindowEnd = notifyOnWindowEnd
         self.soundEnabled = soundEnabled
         self.launchAtLogin = launchAtLogin
+        self.pauseOnScreenSleep = pauseOnScreenSleep
+        self.screenSleepResume = screenSleepResume
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case workMinutes, restMinutes, ranges, activeWeekdays
+        case notifyOnPhaseEnd, notifyOnWindowEnd, soundEnabled, launchAtLogin
+        case pauseOnScreenSleep, screenSleepResume
+    }
+
+    /// 容错解码：新字段缺失时回退默认值，避免旧设置反解失败导致整体重置。
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.workMinutes = try container.decode(Int.self, forKey: .workMinutes)
+        self.restMinutes = try container.decode(Int.self, forKey: .restMinutes)
+        self.ranges = try container.decode([TimeRange].self, forKey: .ranges)
+        self.activeWeekdays = try container.decode(Set<Int>.self, forKey: .activeWeekdays)
+        self.notifyOnPhaseEnd = try container.decode(Bool.self, forKey: .notifyOnPhaseEnd)
+        self.notifyOnWindowEnd = try container.decode(Bool.self, forKey: .notifyOnWindowEnd)
+        self.soundEnabled = try container.decode(Bool.self, forKey: .soundEnabled)
+        self.launchAtLogin = try container.decode(Bool.self, forKey: .launchAtLogin)
+        self.pauseOnScreenSleep =
+            try container.decodeIfPresent(Bool.self, forKey: .pauseOnScreenSleep) ?? false
+        self.screenSleepResume =
+            try container.decodeIfPresent(ScreenSleepResumeTrigger.self, forKey: .screenSleepResume) ?? .screenWake
     }
 
     public static let weekdaysMondayToFriday: Set<Int> = [2, 3, 4, 5, 6]

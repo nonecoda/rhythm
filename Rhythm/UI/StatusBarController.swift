@@ -16,6 +16,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
     private let statusItem: NSStatusItem
     private let menu = NSMenu()
     private var cancellables = Set<AnyCancellable>()
+    private var displayTimer: Timer?
     private var lastSymbolName: String?
 
     /// 固定宽度需容纳「图标 + 最长 h:mm:ss」。
@@ -31,10 +32,22 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         statusItem.menu = menu
         updateButton()
 
+        // 仅用于真正的相位 / 暂停 / 设置变化（图标与菜单状态），不承担每秒刷新。
         controller.objectWillChange
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.updateButton() }
             .store(in: &cancellables)
+
+        // 自持 1 Hz 定时器驱动倒计时文本，彻底绕开 Combine / SwiftUI 的全局发布。
+        let timer = Timer(timeInterval: 1, repeats: true) { [weak self] _ in
+            Task { @MainActor in self?.updateButton() }
+        }
+        RunLoop.main.add(timer, forMode: .common)
+        displayTimer = timer
+    }
+
+    deinit {
+        displayTimer?.invalidate()
     }
 
     // MARK: - 按钮
@@ -62,7 +75,11 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         if button.title != text {
             button.title = text
         }
-        button.toolTip = controller.statusText
+        // 仅在提示文本变化时写入，避免每秒触达 AppKit 的属性失效 / 重绘。
+        let tooltip = controller.statusText
+        if button.toolTip != tooltip {
+            button.toolTip = tooltip
+        }
     }
 
     // MARK: - 菜单

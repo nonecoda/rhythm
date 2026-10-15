@@ -16,6 +16,12 @@ public enum TimerEvent: Equatable, Sendable {
     case windowEnded
 }
 
+/// 暂停原因：手动（用户）或自动（熄屏 / 系统睡眠）。手动暂停永不被自动恢复。
+public enum PauseReason: Equatable, Sendable {
+    case user
+    case automatic
+}
+
 public final class TimerEngine: ObservableObject {
 
     // MARK: - 对外只读状态
@@ -26,6 +32,7 @@ public final class TimerEngine: ObservableObject {
     @Published public private(set) var windowEnd: Date?
     @Published public private(set) var nextWindowStart: Date?
     @Published public private(set) var paused: Bool = false
+    @Published public private(set) var pauseReason: PauseReason?
     @Published public private(set) var freeRun: Bool = false
 
     /// 事件回调（在状态转移后同步触发）。
@@ -37,6 +44,20 @@ public final class TimerEngine: ObservableObject {
     private var schedule: ScheduleEngine
     private let calendar: Calendar
     private var pausedRemaining: TimeInterval?
+
+    /// 仅在值真正变化时写回 `@Published`。
+    ///
+    /// `@Published` 在 `willSet` 阶段无条件发出 `objectWillChange`，即使新旧值相等；
+    /// 而 `tick` 在空闲态每秒都会重算 `nextWindowStart` 等派生值。若不判等，
+    /// 菜单栏常驻 App 会以秒级频率全局发布状态，驱动 SwiftUI/AppKit 反复重算，
+    /// 造成长时运行的内存线性增长。见内存修复计划第 1 步。
+    private func setValue<T: Equatable>(
+        _ keyPath: ReferenceWritableKeyPath<TimerEngine, T>,
+        _ newValue: T
+    ) {
+        guard self[keyPath: keyPath] != newValue else { return }
+        self[keyPath: keyPath] = newValue
+    }
 
     public init(settings: AppSettings, calendar: Calendar = .current, now: Date = Date()) {
         self.settings = settings
@@ -98,7 +119,7 @@ public final class TimerEngine: ObservableObject {
 
         if paused {
             if phase == .idle {
-                nextWindowStart = schedule.nextWindowStart(after: now)
+                setValue(\.nextWindowStart, schedule.nextWindowStart(after: now))
             }
             return
         }
@@ -110,7 +131,7 @@ public final class TimerEngine: ObservableObject {
         if freeRun {
             if let w = window {
                 // 时段开始 → 强制回到时段逻辑，从当前时刻重启完整工作循环。
-                freeRun = false
+                setValue(\.freeRun, false)
                 startWork(now: now, windowEnd: w.end)
             } else {
                 (windowDidEnd, hadPhaseChange) = advance(now: now)
@@ -133,7 +154,7 @@ public final class TimerEngine: ObservableObject {
                 endCycle(now: now)
                 windowDidEnd = true
             }
-            nextWindowStart = schedule.nextWindowStart(after: now)
+            setValue(\.nextWindowStart, schedule.nextWindowStart(after: now))
         }
 
         // 合并补发：一次 tick 至多一条相位通知。
@@ -147,22 +168,31 @@ public final class TimerEngine: ObservableObject {
 
     // MARK: - 手动控制
 
-    public func pause(now: Date) {
+    public func pause(now: Date, reason: PauseReason = .user) {
+        // 已暂停时不覆盖既有原因。
         guard phase != .idle, !paused else { return }
         pausedRemaining = max(phaseEnd.timeIntervalSince(now), 0)
-        paused = true
+        setValue(\.pauseReason, reason)
+        setValue(\.paused, true)
     }
 
     public func resume(now: Date) {
         guard paused else { return }
         let remaining = pausedRemaining ?? 0
-        paused = false
+        setValue(\.paused, false)
         pausedRemaining = nil
+        setValue(\.pauseReason, nil)
         guard phase != .idle else { return }
         let duration = phaseDuration
-        phaseEnd = now.addingTimeInterval(remaining)
-        phaseStart = phaseEnd.addingTimeInterval(-duration)
+        setValue(\.phaseEnd, now.addingTimeInterval(remaining))
+        setValue(\.phaseStart, phaseEnd.addingTimeInterval(-duration))
         tick(now: now)
+    }
+
+    /// 仅当暂停由系统自动触发时恢复；手动暂停不受影响。
+    public func resumeIfAutomatic(now: Date) {
+        guard pauseReason == .automatic else { return }
+        resume(now: now)
     }
 
     /// 跳过当前阶段：工作 → 立即休息；休息 → 立即工作。仍受时段末裁剪。
@@ -170,7 +200,7 @@ public final class TimerEngine: ObservableObject {
         switch phase {
         case .idle:
             if let w = schedule.currentWindow(at: now) {
-                windowEnd = w.end
+                setValue(\.windowEnd, w.end)
                 startWork(now: now, windowEnd: w.end)
             }
         case .work:
@@ -262,17 +292,18 @@ public final class TimerEngine: ObservableObject {
 
     private func endCycle(now: Date) {
         setPhase(.idle, start: now, end: now, windowEnd: nil)
-        freeRun = false
-        nextWindowStart = schedule.nextWindowStart(after: now)
+        setValue(\.freeRun, false)
+        setValue(\.nextWindowStart, schedule.nextWindowStart(after: now))
     }
 
     private func setPhase(_ newPhase: Phase, start: Date, end: Date, windowEnd: Date?) {
-        phase = newPhase
-        phaseStart = start
-        phaseEnd = end
-        self.windowEnd = windowEnd
-        nextWindowStart = nil
-        paused = false
+        setValue(\.phase, newPhase)
+        setValue(\.phaseStart, start)
+        setValue(\.phaseEnd, end)
+        setValue(\.windowEnd, windowEnd)
+        setValue(\.nextWindowStart, nil)
+        setValue(\.paused, false)
+        setValue(\.pauseReason, nil)
         pausedRemaining = nil
     }
 
